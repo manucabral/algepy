@@ -19,7 +19,7 @@ Este proyecto todavía se encuentra en desarrollo y no está completamente desar
 
 <a name="instalacion"></a>
 ## Instalación
-- El parquete todavía no está subido a PyPI así que para probarlo necesitas clonar el repositorio y probarlo manualmente.
+- El paquete todavía no está subido a PyPI así que para probarlo necesitas clonar el repositorio y probarlo manualmente.
 ```bash
 git clone https://github.com/manucabral/algepy.git
 cd algepy
