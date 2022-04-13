@@ -53,16 +53,16 @@ class Vector:
         radians = math.acos(self * other / (self.magnitude() * other.magnitude()))
         return math.degrees(radians).__round__(decimals) if degrees else radians
 
-    def proyection(self, other: 'Vector') -> ['Proyection self->other', 'Proyection other->self']:
+    def projection(self, other: 'Vector') -> ['self->other', 'other->self']:
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
         if other.isnull() or self.isnull():
             raise ValueError('Cannot calculate proyection with null vector')
         product_scalar = self * other
         other_magnitude = other.magnitude() ** 2
-        proyection_magnitude = product_scalar / other_magnitude
-        proyection = other * proyection_magnitude
-        return proyection, self - proyection
+        projection_magnitude = product_scalar / other_magnitude
+        projection = other * projection_magnitude
+        return projection, self - projection
 
     def __eq__(self, other: 'Vector') -> bool:
         if self.dimension != other.dimension:
