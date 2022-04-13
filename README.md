@@ -12,6 +12,7 @@ Este proyecto todavía se encuentra en desarrollo y no está completamente desar
   - [Ángulo entre dos vectores](#vector-angulos)
   - [Producto escalar](#vector-escalar)
   - [Perpendicularidad](#vector-perpendicular)
+  - [Proyección de vectores](#vector-proyeccion)
 - [Punto](#punto)
   - [Operaciones básicas](#punto-operaciones-basicas)
   - [Vector a partir de dos puntos](#punto-vector)
@@ -121,6 +122,26 @@ Para saber si un vector es perpendicular a otro hay que utilizar el método `per
 >>> u.perpendicular(v)
 False
 ```
+<a name="vector-proyeccion"></a>
+### Proyección de vectores
+Para obtener la proyección de un vector en la dirección de otro hay que utilizar el método `projection`, este método devuelve una lista con dos vectores.
+
+`w:` vector principal (u) proyectado en otro vector (v)
+
+`n:` otro vector (v) proyectado en el vector principal (u)
+
+El vector principal es el vector al que le aplicamos el método `projection`.
+```py
+>>> from algepy import Vector
+>>> u = Vector(x=1, y=2, z=1)
+>>> v = Vector(x=0, y=1, z=-1)
+>>> w, n = u.proyection(v)
+>>> w
+(0.0,0.4999999999999999,-0.4999999999999999) # vector u proyectado en v
+>>> n
+(1.0,1.5,1.5) # vector v proyectado en u
+```
+
 
 <a name="punto"></a>
 ## Punto
