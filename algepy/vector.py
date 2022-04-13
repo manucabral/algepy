@@ -53,6 +53,17 @@ class Vector:
         radians = math.acos(self * other / (self.magnitude() * other.magnitude()))
         return math.degrees(radians).__round__(decimals) if degrees else radians
 
+    def proyection(self, other: 'Vector') -> ['Proyection self->other', 'Proyection other->self']:
+        if self.dimension != other.dimension:
+            raise ValueError('Dimensions must be equal')
+        if other.isnull() or self.isnull():
+            raise ValueError('Cannot calculate proyection with null vector')
+        product_scalar = self * other
+        other_magnitude = other.magnitude() ** 2
+        proyection_magnitude = product_scalar / other_magnitude
+        proyection = other * proyection_magnitude
+        return proyection, self - proyection
+
     def __eq__(self, other: 'Vector') -> bool:
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -77,9 +88,14 @@ class Vector:
             raise ValueError('Dimensions must be equal')
         return Vector(x=self.x - other.x, y=self.y - other.y, z=self.z - other.z, dimension=self.dimension)
 
-    def __mul__(self, other: 'Vector') -> 'Vector':
-        if self.dimension != other.dimension:
-            raise ValueError('Dimensions must be equal')
-        if other.isnull() or self.isnull():
-            return 0
-        return self.x * other.x + self.y * other.y + self.z * other.z
+    def __mul__(self, other: 'Vector' or float) -> 'Vector':
+        if isinstance(other, Vector):
+            if self.dimension != other.dimension:
+                raise ValueError('Dimensions must be equal')
+            if other.isnull() or self.isnull():
+                return 0
+            return self.x * other.x + self.y * other.y + self.z * other.z
+        return Vector(x=self.x * other, y=self.y * other, z=self.z * other, dimension=self.dimension)
+    
+    def __truediv__(self, scalar: float) -> 'Vector':
+        return Vector(x=self.x / scalar, y=self.y / scalar, z=self.z / scalar, dimension=self.dimension)
