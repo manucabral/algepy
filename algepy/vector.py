@@ -1,32 +1,35 @@
 import math
 
+
 class Vector:
-    def __init__(self, **kwargs) -> None:
-        """
-            Initialize a vector with x, y and z coordinates.
-            
+    """
+        Vector class
+    """
+
+    def __init__(self, **kwargs):
+        """Initialize a vector with x, y and z coordinates.
+
             Params:
                 x: x coordinate
                 y: y coordinate
                 z: z coordinate
                 dimension: dimension of the vector. Default is 3
-            
             Returns:
                 A vector class instance.
-            
             Raises:
                 None
         """
         if kwargs is None:
-            return self.null()
-        self.axes = ['x', 'y', 'z']
-        self.dimension = kwargs.get('dimension', 3)
-        self.check_axes(kwargs)
+            self.null()
+        else:
+            self.axes = ['x', 'y', 'z']
+            self.dimension = kwargs.get('dimension', 3)
+            self.check_axes(kwargs)
 
     def check_axes(self, kwargs: dict) -> None:
         """
             Check if the axes are valid.
-            
+
             Params:
                 kwargs: dictionary with the axes.
 
@@ -42,23 +45,37 @@ class Vector:
     def null(self) -> None:
         """
             Set all the coordinates to 0.
-            
+
             Params:
                 None
-            
+
             Returns:
                 None
         """
-        self.x = self.y = self.z = 0
-        self.dimension = 3
-    
+        for axis in self.axes[0: self.dimension]:
+            setattr(self, axis, 0)
+
+    def get(self, axis: str) -> float:
+        """
+            Get the value of the axis.
+
+            Params:
+                axis: axis to get the value.
+
+            Returns:
+                Value of the axis as a float.
+        """
+        if axis not in self.axes:
+            raise ValueError('Axis must be x, y or z')
+        return getattr(self, axis)
+
     def magnitude(self) -> float:
         """
             Calculate the magnitude of the vector.
-                
+
             Params:
                 None
-                
+
             Returns:
                 Magnitude of the vector as a float.
         """
@@ -73,25 +90,26 @@ class Vector:
 
             Params:
                 None
-            
+
             Returns:
                 A vector with the opposite coordinates of the original vector.
         """
-        return Vector(x=-self.x, y=-self.y, z=-self.z, dimension=self.dimension)
+        x, y, z = -self.get('x'), -self.get('y'), -self.get('z')
+        return Vector(x=x, y=y, z=z, dimension=self.dimension)
 
     def isnull(self) -> bool:
         """
             Check if the vector is null.
-                
+
             Params:
                 None
-                
+
             Returns:
                 True if the vector is null, False otherwise.
         """
         return self.magnitude() >= 0 and self.magnitude() == 0
 
-    def direction_cosine(self, axis: str, degrees: bool = False, decimals: int = 2) -> 'Radians or Degrees':
+    def direction_cosine(self, axis: str, degrees: bool = False, decimals: int = 2) -> float:
         """
             Calculate the direction cosine of the vector.
 
@@ -99,7 +117,7 @@ class Vector:
                 axis: axis to calculate the direction cosine.
                 degrees: if True, return the result in degrees.
                 decimals: number of decimals to round the result.
-            
+
             Returns:
                 Direction cosine of the vector as a radian or degree.
         """
@@ -108,32 +126,32 @@ class Vector:
         value = getattr(self, axis)
         radians = math.acos(value/self.magnitude())
         return math.degrees(radians).__round__(decimals) if degrees else radians
-    
+
     def perpendicular(self, other: 'Vector') -> bool:
         """
             Check if the vector is perpendicular to the other vector.
 
             Params:
                 other: other vector to check.
-            
+
             Returns:
                 True if the vector is perpendicular to the other vector, False otherwise.
-        """ 
+        """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
         if other.isnull() or self.isnull():
             raise ValueError('Cannot calculate perpendicular with null vector')
         return self * other == 0
 
-    def angle(self, other: 'Vector', degrees: bool = False, decimals: int = 2) -> 'Radians or Degrees':
+    def angle(self, other: 'Vector', degrees: bool = False, decimals: int = 2) -> float:
         """
             Calculate the angle between the vectors.
-            
+
             Params:
                 other: other vector to calculate the angle.
                 degrees: if True, return the result in degrees.
                 decimals: number of decimals to round the result.
-            
+
             Returns:
                 Angle between the vectors as a radian or degree.
         """
@@ -141,7 +159,8 @@ class Vector:
             raise ValueError('Dimensions must be equal')
         if other.isnull() or self.isnull():
             raise ValueError('Cannot calculate angle with null vector')
-        radians = math.acos(self * other / (self.magnitude() * other.magnitude()))
+        radians = math.acos(
+            self * other / (self.magnitude() * other.magnitude()))
         return math.degrees(radians).__round__(decimals) if degrees else radians
 
     def projection(self, other: 'Vector') -> ['self->other', 'other->self']:
@@ -150,7 +169,7 @@ class Vector:
 
             Params:
                 other: other vector to calculate the projection.
-            
+
             Returns:
                 A tuple with the projection:
                     - self->other: projection of the vector on the other vector.
@@ -172,13 +191,16 @@ class Vector:
 
             Params:
                 other: other vector to check.
-            
+
             Returns:
                 True if the vectors are equal, False otherwise.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
-        return self.x == other.x and self.y == other.y and self.z == other.z
+        for axis in self.axes[0: self.dimension]:
+            if getattr(self, axis) != getattr(other, axis):
+                return False
+        return True
 
     def __str__(self) -> str:
         """
@@ -186,7 +208,7 @@ class Vector:
 
             Params:
                 None
-            
+
             Returns:
                 Vector as a string in the form of (x, y, z).
         """
@@ -194,18 +216,18 @@ class Vector:
         for axis in self.axes[0: self.dimension]:
             values += f'{getattr(self, axis)},'
         return values[:-1] + ')'
-    
+
     def __repr__(self) -> str:
         """
             Return the vector as a string.
 
             Params:
                 None
-            
+
             Returns:
                 Vector as a string in the form of Vector(x, y, z).
         """
-        return f'Vector({self.x}, {self.y}, {self.z})'
+        return f'Vector({self.get("x")}, {self.get("y")}, {self.get("z")})'
 
     def __add__(self, other: 'Vector') -> 'Vector':
         """
@@ -213,13 +235,16 @@ class Vector:
 
             Params:
                 other: other vector to add.
-            
+
             Returns:
                 A vector with the sum of the two vectors.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
-        return Vector(x=self.x + other.x, y=self.y + other.y, z=self.z + other.z, dimension=self.dimension)
+        vec = Vector(dimension=self.dimension)
+        for axis in self.axes[0: self.dimension]:
+            setattr(vec, axis, getattr(self, axis) + getattr(other, axis))
+        return vec
 
     def __sub__(self, other: 'Vector') -> 'Vector':
         """
@@ -233,7 +258,10 @@ class Vector:
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
-        return Vector(x=self.x - other.x, y=self.y - other.y, z=self.z - other.z, dimension=self.dimension)
+        vec = Vector(dimension=self.dimension)
+        for axis in self.axes[0: self.dimension]:
+            setattr(vec, axis, getattr(self, axis) - getattr(other, axis))
+        return vec
 
     def __mul__(self, other: 'Vector' or float) -> 'Vector':
         """
@@ -249,10 +277,16 @@ class Vector:
             if self.dimension != other.dimension:
                 raise ValueError('Dimensions must be equal')
             if other.isnull() or self.isnull():
-                return 0
-            return self.x * other.x + self.y * other.y + self.z * other.z
-        return Vector(x=self.x * other, y=self.y * other, z=self.z * other, dimension=self.dimension)
-    
+                return x
+            x = self.get('x') * other.get('x')
+            y = self.get('y') * other.get('y')
+            z = self.get('z') * other.get('z')
+            return x + y + z
+        vec = Vector(dimension=self.dimension)
+        for axis in self.axes[0: self.dimension]:
+            setattr(vec, axis, getattr(self, axis) * other)
+        return vec
+
     def __truediv__(self, scalar: float) -> 'Vector':
         """
             Divide a vector by a scalar.
@@ -263,4 +297,7 @@ class Vector:
             Returns:
                 A vector with the division of the vector by the scalar.
         """
-        return Vector(x=self.x / scalar, y=self.y / scalar, z=self.z / scalar, dimension=self.dimension)
+        vec = Vector(dimension=self.dimension)
+        for axis in self.axes[0: self.dimension]:
+            setattr(vec, axis, getattr(self, axis) / scalar)
+        return vec
