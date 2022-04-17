@@ -22,7 +22,6 @@ class Vector:
         self.axes = ['x', 'y', 'z']
         self.dimension = kwargs.get('dimension', 3)
         self.check_axes(kwargs)
-        return self
 
     def check_axes(self, kwargs: dict) -> None:
         """
