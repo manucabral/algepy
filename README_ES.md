@@ -159,6 +159,23 @@ Tener en cuenta que el producto vectorial no es conmutativo, ya que si cambiamos
 True, True
 ```
 
+<a name="vector-producto-mixto"></a>
+### Producto mixto
+To get the mixed product you have to use the `triple` method, this method returns a scalar number and it is not commutative so you have to take into account the following.
+
+Defined `u`, `v` and `w`
+When using the method on `u`.triple(`v`, `w`) the vector product between the vectors `v` and `w` will be applied and then the scalar product between `u`(`v`x` w`)
+
+```py
+>>> from algepy import Vector
+>>> u = Vector(x=1, y=2, z=3)
+>>> v = Vector(x=0, y=2, z=5)
+>>> w = Vector(x=0, y=0, z=2)
+>>> u.triple(v, w)
+4
+>>> u * v.cross(w) # equivalente
+```
+
 <a name="punto"></a>
 ## Punto
 Para definir un punto simplemente necesitas instanciar la clase Point con sus componentes (x, y, z).

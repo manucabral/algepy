@@ -14,6 +14,7 @@ This project is still under development and is not fully developed, it may have 
   - [Perpendicular](#vector-perpendicular)
   - [Proyection](#vector-proyeccion)
   - [Cross product](#vector-producto-vectorial)
+  - [Triple product](#vector-producto-mixto)
 - [Point](#punto)
   - [Basic operations](#punto-operaciones-basicas)
   - [Find the vector between two points](#punto-vector)
@@ -158,6 +159,22 @@ Bear in mind that the vector product is not commutative, since if we change the 
 (4,-5,2) # cross product
 >>> v.perpendicular(a), v.perpendicular(b)
 True, True
+```
+
+<a name="vector-producto-mixto"></a>
+### Triple product
+To get the triple product you have to use the `triple` method, this returns a number and isn't commutative.
+
+Defined `u`, `v` and `w`
+When using the method on `u`.triple(`v`, `w`) the cross product between `v` and `w` will be applied and then the dot product between `u`(`v`x` w`)
+```py
+>>> from algepy import Vector
+>>> u = Vector(x=1, y=2, z=3)
+>>> v = Vector(x=0, y=2, z=5)
+>>> w = Vector(x=0, y=0, z=2)
+>>> u.triple(v, w)
+4
+>>> u * v.cross(w) # equivalent
 ```
 
 <a name="punto"></a>
