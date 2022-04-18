@@ -13,6 +13,7 @@ Este proyecto todavía se encuentra en desarrollo y no está completamente desar
   - [Producto escalar](#vector-escalar)
   - [Perpendicularidad](#vector-perpendicular)
   - [Proyección de vectores](#vector-proyeccion)
+  - [Producto vectorial](#vector-producto-vectorial)
 - [Punto](#punto)
   - [Operaciones básicas](#punto-operaciones-basicas)
   - [Vector a partir de dos puntos](#punto-vector)
@@ -142,6 +143,20 @@ El vector principal es el vector al que le aplicamos el método `projection`.
 (1.0,1.5,1.5) # vector v proyectado en u
 ```
 
+<a name="vector-producto-vectorial"></a>
+### Producto vectorial
+Para obtener el producto vectorial entre dos vectores hay que utilizar el método `cross`, este método devuelve el vector resultado del producto vectorial.
+
+Tener en cuenta que el producto vectorial no es conmutativo, ya que si cambiamos el orden de los vectores se conservan la dirección y el módulo del producto vectorial pero se invierte el sentido.
+```py
+>>> from algepy import Vector
+>>> a = Vector(x=1, y=2, z=3)
+>>> b = Vector(x=0, y=2, z=5)
+>>> v = a.cross(b)
+>>> v
+(4,-5,2) # producto vectorial
+>>> v.perpendicular(a), v.perpendicular(b)
+True, True
 
 <a name="punto"></a>
 ## Punto

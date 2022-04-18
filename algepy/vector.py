@@ -185,6 +185,25 @@ class Vector:
         projection = other * projection_magnitude
         return projection, self - projection
 
+    def cross(self, other: 'Vector') -> 'Vector':
+        """
+            Calculate the cross product with the other vector.
+
+            Params:
+                other: other vector to calculate the cross product.
+
+            Returns:
+                A vector with the cross product.
+        """
+        if self.dimension != other.dimension:
+            raise ValueError('Dimensions must be equal')
+        if other.isnull() or self.isnull():
+            raise ValueError('Cannot calculate cross product with null vector')
+        x = self.get('z') * other.get('y') - self.get('y') * other.get('z')
+        y = self.get('x') * other.get('z') - self.get('z') * other.get('x')
+        z = self.get('y') * other.get('x') - self.get('x') * other.get('y')
+        return Vector(x=abs(x), y=-abs(y), z=abs(z), dimension=self.dimension)
+
     def __eq__(self, other: 'Vector') -> bool:
         """
             Check if the vectors are equal.

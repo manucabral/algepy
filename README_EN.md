@@ -13,6 +13,7 @@ This project is still under development and is not fully developed, it may have 
   - [Dot product](#vector-escalar)
   - [Perpendicular](#vector-perpendicular)
   - [Proyection](#vector-proyeccion)
+  - [Cross product](#vector-producto-vectorial)
 - [Point](#punto)
   - [Basic operations](#punto-operaciones-basicas)
   - [Find the vector between two points](#punto-vector)
@@ -143,6 +144,20 @@ The main vector is the vector to which we apply the `projection` method.
 (1.0,1.5,1.5) # v on u
 ```
 
+<a name="vector-producto-vectorial"></a>
+### Cross product
+To get the cross product between two vectors, you must use the `cross` method, this returns the vector resulting from the cross product.
+
+Bear in mind that the vector product is not commutative, since if we change the order of the vectors, the direction and the magnitude of the vector product are preserved, but the sense is reversed.
+```py
+>>> from algepy import Vector
+>>> a = Vector(x=1, y=2, z=3)
+>>> b = Vector(x=0, y=2, z=5)
+>>> v = a.cross(b)
+>>> v
+(4,-5,2) # cross product
+>>> v.perpendicular(a), v.perpendicular(b)
+True, True
 
 <a name="punto"></a>
 ## Point
