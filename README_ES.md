@@ -14,6 +14,7 @@ Este proyecto todavía se encuentra en desarrollo y no está completamente desar
   - [Perpendicularidad](#vector-perpendicular)
   - [Proyección de vectores](#vector-proyeccion)
   - [Producto vectorial](#vector-producto-vectorial)
+  - [Producto mixto](#vector-producto-mixto)
 - [Punto](#punto)
   - [Operaciones básicas](#punto-operaciones-basicas)
   - [Vector a partir de dos puntos](#punto-vector)
@@ -161,10 +162,10 @@ True, True
 
 <a name="vector-producto-mixto"></a>
 ### Producto mixto
-To get the mixed product you have to use the `triple` method, this method returns a scalar number and it is not commutative so you have to take into account the following.
+Para obtener el producto mixto hay que utilizar el método `triple`, este método devuelve un escalar y no es conmutativo así que hay que tener en cuenta lo siguiente.
 
-Defined `u`, `v` and `w`
-When using the method on `u`.triple(`v`, `w`) the vector product between the vectors `v` and `w` will be applied and then the scalar product between `u`(`v`x` w`)
+Definidos `u`, `v` y `w`
+Cuando se utiliza el método en `u`.triple(`v`,`w`) se aplicará primero el producto vectorial entre `v` y `w` para después calcular el producto escalar `u`(`v`x` w`)
 
 ```py
 >>> from algepy import Vector
