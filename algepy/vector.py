@@ -204,6 +204,24 @@ class Vector:
         z = self.get('x') * other.get('y') - self.get('y') * other.get('x')
         return Vector(x=x, y=-y, z=z, dimension=self.dimension)
 
+    def triple(self, other: 'Vector', third: 'Vector') -> float:
+        """
+            Calculate the triple product of the vectors.
+
+            Params:
+                other: other vector to calculate the triple product.
+                third: third vector to calculate the triple product.
+
+            Returns:
+                Triple product of the vectors as a float.
+        """
+        if self.dimension != other.dimension or self.dimension != third.dimension:
+            raise ValueError('Dimensions must be equal')
+        if other.isnull() or self.isnull() or third.isnull():
+            raise ValueError('Cannot calculate triple product with null vector')
+        cross = other.cross(third)
+        return self * cross
+
     def __eq__(self, other: 'Vector') -> bool:
         """
             Check if the vectors are equal.
