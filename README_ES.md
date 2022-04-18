@@ -157,6 +157,7 @@ Tener en cuenta que el producto vectorial no es conmutativo, ya que si cambiamos
 (4,-5,2) # producto vectorial
 >>> v.perpendicular(a), v.perpendicular(b)
 True, True
+```
 
 <a name="punto"></a>
 ## Punto

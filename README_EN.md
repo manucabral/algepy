@@ -158,6 +158,7 @@ Bear in mind that the vector product is not commutative, since if we change the 
 (4,-5,2) # cross product
 >>> v.perpendicular(a), v.perpendicular(b)
 True, True
+```
 
 <a name="punto"></a>
 ## Point
