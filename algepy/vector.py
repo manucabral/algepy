@@ -199,10 +199,10 @@ class Vector:
             raise ValueError('Dimensions must be equal')
         if other.isnull() or self.isnull():
             raise ValueError('Cannot calculate cross product with null vector')
-        x = self.get('z') * other.get('y') - self.get('y') * other.get('z')
+        x = self.get('y') * other.get('z') - self.get('z') * other.get('y')
         y = self.get('x') * other.get('z') - self.get('z') * other.get('x')
-        z = self.get('y') * other.get('x') - self.get('x') * other.get('y')
-        return Vector(x=abs(x), y=-abs(y), z=abs(z), dimension=self.dimension)
+        z = self.get('x') * other.get('y') - self.get('y') * other.get('x')
+        return Vector(x=x, y=-y, z=z, dimension=self.dimension)
 
     def __eq__(self, other: 'Vector') -> bool:
         """
