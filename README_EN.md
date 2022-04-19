@@ -193,14 +193,13 @@ No examples, still in development.
 
 <a name="punto-vector"></a>
 ### Find the vector between two points
-To get a vector from two points, simply use the + operator, it is required that two points be used.
+To get a vector from two points you have to use the `find_vector` method, this returns a vector formed from the two points.
 
-The result of that operation will returns a vector.
 ```py
 from algepy import Point
->>> R = Point(x=1, y=1, z=4)
->>> S = Point(x=3, y=0, z=2)
->>> R + S
+>>> r = Point(x=1, y=1, z=4)
+>>> s = Point(x=3, y=0, z=2)
+>>> r.find_vector(s)
 (2,-1,-2)
 ```
 

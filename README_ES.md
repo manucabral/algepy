@@ -193,14 +193,13 @@ No hay ejemplos que mostrar, todavía en desarrollo.
 
 <a name="punto-vector"></a>
 ### Vector a partir de dos puntos
-Para obtener un vector a partir de dos puntos simplemente hay que usar el operador +, es obligatorio que se utilicen dos puntos.
+Para obtener un vector a partir de dos puntos hay que utilizar el método `find_vector`, este devuelve un vector formado a partir de los dos puntos.
 
-El resultado de esa operación nos devolverá un vector.
 ```py
 from algepy import Point
->>> R = Point(x=1, y=1, z=4)
->>> S = Point(x=3, y=0, z=2)
->>> R + S
+>>> r = Point(x=1, y=1, z=4)
+>>> s = Point(x=3, y=0, z=2)
+>>> r.find_vector(s)
 (2,-1,-2)
 ```
 
