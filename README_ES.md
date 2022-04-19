@@ -19,6 +19,9 @@ Este proyecto todavía se encuentra en desarrollo y no está completamente desar
   - [Operaciones básicas](#punto-operaciones-basicas)
   - [Punto medio](#punto-medio)
   - [Vector a partir de dos puntos](#punto-vector)
+- [Gráfico](#grafico)
+  - [Vector](#grafico-vectores)
+  - [Punto](#grafico-puntos)
 - [Contribuciones](#contribucion)
 
 <a name="instalacion"></a>
@@ -214,6 +217,42 @@ from algepy import Point
 >>> r.find_vector(s)
 (2,-1,-2)
 ```
+<a name="grafico"></a>
+## Gráfico
+Algepy utiliza pyplot de matplotlib así que para que este módulo te funcione necesitas tener instalado este paquete.
+
+Por ahora el gráfico solamente soporta 3 dimensiones, puedes intentar con otras pero corres el riesgo de obtener varios errores.
+```py
+plot = Plot(name='Ejemplo', projection='3d')
+plot.show()
+```
+<a name="grafico-vectores"></a>
+### Gráfico de un vector
+Para agregar un vector a nuestro gráfico necesitamos utilizar el método `add_vector` y además tener un punto de origen para el vector.
+
+Una vez realizado esto podemos mostrar el gráfico con el método `show`
+
+```py
+origen = Point(x=0, y=0, z=0)
+a = Vector(x=1, y=2, z=3)
+plot = Plot(name='Vector', projection='3d')
+plot.add_vector(origin=origen, vector=a)
+plot.show()
+```
+<img src="https://github.com/manucabral/algepy/blob/main/assets/testplot.png?raw=true" title="testplot">
+
+<a name="grafico-puntos"></a>
+### Gráfico de un punto
+Para agregar un punto a nuestro gráfico necesitamos utilizar el método `add_point`
+
+Una vez realizado esto podemos mostrar el gráfico con el método `show`
+```py
+p = Point(x=1, y=2, z=3)
+plot = Plot(name='Punto', projection='3d')
+plot.add_point(point=p, color='red')
+plot.show()
+```
+<img src="https://github.com/manucabral/algepy/blob/main/assets/testplotpoint.png?raw=true" title="testplotpoint">
 
 <a name="contribucion"></a>
 ## Contribución
