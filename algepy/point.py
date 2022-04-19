@@ -53,7 +53,6 @@ class Point:
         x = (self.x + other.x) / 2
         y = (self.y + other.y) / 2
         z = (self.z + other.z) / 2
-        print(self.z + other.z)
         return Vector(x=x, y=y, z=z)
 
     def find_vector(self, other: 'Point') -> Vector:
