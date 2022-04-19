@@ -4,6 +4,12 @@ import math
 class Vector:
     """
         Vector class
+        Supported operators:
+            +: add two vectors
+            -: subtract two vectors
+            *: scalar multiplication
+            /: scalar division
+            ==: check if two vectors are equal
     """
 
     def __init__(self, **kwargs):
@@ -35,6 +41,9 @@ class Vector:
 
             Returns:
                 None
+
+            Raises:
+                None
         """
         for axis in self.axes:
             if axis in kwargs:
@@ -64,6 +73,9 @@ class Vector:
 
             Returns:
                 Value of the axis as a float.
+
+            Raises:
+                ValueError if the axis is not valid.
         """
         if axis not in self.axes:
             raise ValueError('Axis must be x, y or z')
@@ -78,11 +90,31 @@ class Vector:
 
             Returns:
                 Magnitude of the vector as a float.
+
+            Raises:
+                None
         """
         _sum = 0
         for axis in self.axes[0: self.dimension]:
             _sum += getattr(self, axis) ** 2
         return math.sqrt(_sum) if _sum > 0 else 0
+
+    def midpoint(self) -> 'Vector':
+        """
+            Calculate the midpoint of the vector.
+
+            Params:
+                None
+
+            Returns:
+                Midpoint of the vector as a vector.
+
+            Raises:
+                ValueError if the vector is null.
+        """
+        if self.isnull():
+            raise ValueError('Cannot calculate midpoint with null vector')
+        return self / 2
 
     def opposite(self) -> 'Vector':
         """
@@ -93,7 +125,12 @@ class Vector:
 
             Returns:
                 A vector with the opposite coordinates of the original vector.
+
+            Raises:
+                ValueError if the vector is null.
         """
+        if self.isnull():
+            raise ValueError('Cannot calculate opposite with null vector')
         x, y, z = -self.get('x'), -self.get('y'), -self.get('z')
         return Vector(x=x, y=y, z=z, dimension=self.dimension)
 
@@ -106,6 +143,9 @@ class Vector:
 
             Returns:
                 True if the vector is null, False otherwise.
+
+            Raises:
+                None
         """
         return self.magnitude() >= 0 and self.magnitude() == 0
 
@@ -114,12 +154,15 @@ class Vector:
             Calculate the direction cosine of the vector.
 
             Params:
-                axis: axis to calculate the direction cosine.
-                degrees: if True, return the result in degrees.
-                decimals: number of decimals to round the result.
+                axis (str): axis to calculate the direction cosine.
+                degrees (bool): if True, return the result in degrees.
+                decimals (int): number of decimals to round the result.
 
             Returns:
                 Direction cosine of the vector as a radian or degree.
+
+            Raises:
+                ValueError if the axis is not valid.
         """
         if axis not in self.axes:
             raise ValueError('Axis must be x, y or z')
@@ -132,10 +175,13 @@ class Vector:
             Check if the vector is perpendicular to the other vector.
 
             Params:
-                other: other vector to check.
+                other (Vector): other vector to check.
 
             Returns:
                 True if the vector is perpendicular to the other vector, False otherwise.
+
+            Raises:
+                ValueError if the vector is null or the dimensions are not equal.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -148,12 +194,15 @@ class Vector:
             Calculate the angle between the vectors.
 
             Params:
-                other: other vector to calculate the angle.
-                degrees: if True, return the result in degrees.
-                decimals: number of decimals to round the result.
+                other (Vector): other vector to calculate the angle.
+                degrees (bool): if True, return the result in degrees.
+                decimals (int): number of decimals to round the result.
 
             Returns:
                 Angle between the vectors as a radian or degree.
+
+            Raises:
+                ValueError if the vector is null or the dimensions are not equal.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -168,12 +217,15 @@ class Vector:
             Calculate the projection of the vector on the other vector.
 
             Params:
-                other: other vector to calculate the projection.
+                other (Vector): other vector to calculate the projection.
 
             Returns:
                 A tuple with the projection:
                     - self->other: projection of the vector on the other vector.
                     - other->self: projection of the other vector on the vector.
+
+            Raises:
+                ValueError if the vector is null or the dimensions are not equal.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -190,10 +242,13 @@ class Vector:
             Calculate the cross product with the other vector.
 
             Params:
-                other: other vector to calculate the cross product.
+                other (Vector): other vector to calculate the cross product.
 
             Returns:
                 A vector with the cross product.
+
+            Raises:
+                ValueError if the vector is null or the dimensions are not equal.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -209,16 +264,20 @@ class Vector:
             Calculate the triple product of the vectors.
 
             Params:
-                other: other vector to calculate the triple product.
-                third: third vector to calculate the triple product.
+                other (Vector): other vector to calculate the triple product.
+                third (Vector): third vector to calculate the triple product.
 
             Returns:
                 Triple product of the vectors as a float.
+
+            Raises:
+                ValueError if the vector is null or the dimensions are not equal.
         """
         if self.dimension != other.dimension or self.dimension != third.dimension:
             raise ValueError('Dimensions must be equal')
         if other.isnull() or self.isnull() or third.isnull():
-            raise ValueError('Cannot calculate triple product with null vector')
+            raise ValueError(
+                'Cannot calculate triple product with null vector')
         cross = other.cross(third)
         return self * cross
 
@@ -231,6 +290,9 @@ class Vector:
 
             Returns:
                 True if the vectors are equal, False otherwise.
+
+            Raises:
+                ValueError if the dimensions are not equal.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -248,6 +310,9 @@ class Vector:
 
             Returns:
                 Vector as a string in the form of (x, y, z).
+
+            Raises:
+                None
         """
         values = '('
         for axis in self.axes[0: self.dimension]:
@@ -263,6 +328,9 @@ class Vector:
 
             Returns:
                 Vector as a string in the form of Vector(x, y, z).
+
+            Raises:
+                None
         """
         return f'Vector({self.get("x")}, {self.get("y")}, {self.get("z")})'
 
@@ -275,6 +343,9 @@ class Vector:
 
             Returns:
                 A vector with the sum of the two vectors.
+
+            Raises:
+                ValueError if the dimensions are not equal.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -292,6 +363,9 @@ class Vector:
 
             Returns:
                 A vector with the difference of the two vectors.
+
+            Raises:
+                ValueError if the dimensions are not equal.
         """
         if self.dimension != other.dimension:
             raise ValueError('Dimensions must be equal')
@@ -309,6 +383,9 @@ class Vector:
 
             Returns:
                 A vector with the product of the vector and the scalar or a vector.
+
+            Raises:
+                ValueError if the dimensions are not equal.
         """
         if isinstance(other, Vector):
             if self.dimension != other.dimension:
