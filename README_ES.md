@@ -26,7 +26,11 @@ Este proyecto todavía se encuentra en desarrollo y no está completamente desar
 
 <a name="instalacion"></a>
 ## Instalación
-- El paquete todavía no está subido a PyPI así que para probarlo necesitas clonar el repositorio y probarlo manualmente.
+> Utilizando [Python Package Index (PyPI)](https://pypi.org/project/algepy/)
+```bash
+pip install algepy
+```
+> Manualmente
 ```bash
 git clone https://github.com/manucabral/algepy.git
 cd algepy

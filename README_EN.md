@@ -25,8 +25,12 @@ This project is still under development and is not fully developed, it may have 
 - [Contributions](#contribucion)
 
 <a name="instalacion"></a>
-## Installation
-- The package is not yet uploaded to PyPI so to test it you need to clone the repository and test it manually.
+## Instalación
+> Using [Python Package Index (PyPI)](https://pypi.org/project/algepy/)
+```bash
+pip install algepy
+```
+> Manually
 ```bash
 git clone https://github.com/manucabral/algepy.git
 cd algepy
