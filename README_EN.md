@@ -17,6 +17,7 @@ This project is still under development and is not fully developed, it may have 
   - [Triple product](#vector-producto-mixto)
 - [Point](#punto)
   - [Basic operations](#punto-operaciones-basicas)
+  - [Midpoint](#punto-medio)
   - [Find the vector between two points](#punto-vector)
 - [Contributions](#contribucion)
 
@@ -189,7 +190,18 @@ from algepy import Point
 ```
 <a name="punto-operaciones-basicas"></a>
 ### Basic operations
-No examples, still in development.
+To add and subtract you just have to use the + and - operator, both operations return a point.
+
+<a name="punto-medio"></a>
+### Midpoint
+To get the midpoint between two points, use the `midpoint` method, it returns a vector with the components of the midpoint.
+```py
+from algepy import Point
+>>> r = Point(x=1, y=2, z=3)
+>>> s = Point(x=3, y=-1, z=2)
+>>> r.midpoint(s)
+(2.0,0.5,2.5)
+```
 
 <a name="punto-vector"></a>
 ### Find the vector between two points
