@@ -17,6 +17,7 @@ Este proyecto todavía se encuentra en desarrollo y no está completamente desar
   - [Producto mixto](#vector-producto-mixto)
 - [Punto](#punto)
   - [Operaciones básicas](#punto-operaciones-basicas)
+  - [Punto medio](#punto-medio)
   - [Vector a partir de dos puntos](#punto-vector)
 - [Contribuciones](#contribucion)
 
@@ -189,7 +190,18 @@ from algepy import Point
 ```
 <a name="punto-operaciones-basicas"></a>
 ### Operaciones básicas
-No hay ejemplos que mostrar, todavía en desarrollo.
+Para sumar y restar solamente tienes que utilizar el operador + y -, las dos operaciones devuelve un punto.
+
+<a name="punto-medio"></a>
+### Punto medio
+Para obtener el punto medio entre dos puntos hay que utilizar el método `midpoint`, este devuelve un vector con los componentes del punto medio.
+```py
+from algepy import Point
+>>> r = Point(x=1, y=2, z=3)
+>>> s = Point(x=3, y=-1, z=2)
+>>> r.midpoint(s)
+(2.0,0.5,2.5)
+```
 
 <a name="punto-vector"></a>
 ### Vector a partir de dos puntos
