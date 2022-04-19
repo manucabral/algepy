@@ -19,6 +19,9 @@ This project is still under development and is not fully developed, it may have 
   - [Basic operations](#punto-operaciones-basicas)
   - [Midpoint](#punto-medio)
   - [Find the vector between two points](#punto-vector)
+- [Plot](#grafico)
+  - [Vector](#grafico-vectores)
+  - [Point](#grafico-puntos)
 - [Contributions](#contribucion)
 
 <a name="instalacion"></a>
@@ -214,6 +217,43 @@ from algepy import Point
 >>> r.find_vector(s)
 (2,-1,-2)
 ```
+
+<a name="grafico"></a>
+## Plot
+Algepy uses pyplot from matplotlib so for this module to work, you need to have this package installed.
+
+For now the plot only supports 3 dimensions, you can try others dimensions but you will have errors.
+```py
+plot = Plot(name='Example', projection='3d')
+plot.show()
+```
+
+<a name="grafico-vectores"></a>
+### Plot a vector
+To add a vector to our plot we need to use the `add_vector` method and also have an origin point for the vector.
+
+Once this is done we can show the graph with the `show` method.
+```py
+origin = Point(x=0, y=0, z=0)
+a = Vector(x=1, y=2, z=3)
+plot = Plot(name='Vector', projection='3d')
+plot.add_vector(origin=origin, vector=a)
+plot.show()
+```
+<img src="https://github.com/manucabral/algepy/blob/main/assets/testplot.png?raw=true" title="testplot">
+
+<a name="grafico-puntos"></a>
+### Plot a point
+To add a point to our plot we need to use the `add_point` method.
+
+Once this is done we can show the graph with the `show` method.
+```py
+p = Point(x=1, y=2, z=3)
+plot = Plot(name='Point', projection='3d')
+plot.add_point(point=p, color='red')
+plot.show()
+```
+<img src="https://github.com/manucabral/algepy/blob/main/assets/testplotpoint.png?raw=true" title="testplotpoint">
 
 <a name="contribucion"></a>
 ## Contributions
