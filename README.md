@@ -242,11 +242,13 @@ To add a vector to our plot we need to use the `add_vector` method and also have
 
 Once this is done we can show the graph with the `show` method.
 ```py
-origin = Point(x=0, y=0, z=0)
-a = Vector(x=1, y=2, z=3)
-plot = Plot(name='Vector', projection='3d')
-plot.add_vector(origin=origin, vector=a)
-plot.show()
+  from algepy import Vector, Point, Plot
+  
+  origin = Point(x=0, y=0, z=0)
+  a = Vector(x=1, y=2, z=3)
+  plot = Plot(name='Vector', projection='3d')
+  plot.add_vector(origin=origin, vector=a)
+  plot.show()
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplot.png?raw=true" title="testplot">
 
@@ -256,10 +258,12 @@ To add a point to our plot we need to use the `add_point` method.
 
 Once this is done we can show the graph with the `show` method.
 ```py
-p = Point(x=1, y=2, z=3)
-plot = Plot(name='Point', projection='3d')
-plot.add_point(point=p, color='red')
-plot.show()
+  from algepy import Point, Plot
+  
+  p = Point(x=1, y=2, z=3)
+  plot = Plot(name='Point', projection='3d')
+  plot.add_point(point=p, color='red')
+  plot.show()
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplotpoint.png?raw=true" title="testplotpoint">
 
@@ -511,11 +515,13 @@ Para agregar un vector a nuestro gráfico necesitamos utilizar el método `add_v
 Una vez realizado esto podemos mostrar el gráfico con el método `show`
 
 ```py
-origen = Point(x=0, y=0, z=0)
-a = Vector(x=1, y=2, z=3)
-plot = Plot(name='Vector', projection='3d')
-plot.add_vector(origin=origen, vector=a)
-plot.show()
+from algepy import Vector, Point, Plot
+  
+  origen = Point(x=0, y=0, z=0)
+  a = Vector(x=1, y=2, z=3)
+  plot = Plot(name='Vector', projection='3d')
+  plot.add_vector(origin=origen, vector=a)
+  plot.show()
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplot.png?raw=true" title="testplot">
 
@@ -525,10 +531,11 @@ Para agregar un punto a nuestro gráfico necesitamos utilizar el método `add_po
 
 Una vez realizado esto podemos mostrar el gráfico con el método `show`
 ```py
-p = Point(x=1, y=2, z=3)
-plot = Plot(name='Punto', projection='3d')
-plot.add_point(point=p, color='red')
-plot.show()
+  from algepy import Point, Plot
+  p = Point(x=1, y=2, z=3)
+  plot = Plot(name='Punto', projection='3d')
+  plot.add_point(point=p, color='red')
+  plot.show()
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplotpoint.png?raw=true" title="testplotpoint">
 
