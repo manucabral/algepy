@@ -29,7 +29,7 @@ This project is still under development and is not fully developed, it may have 
 - [Contributions](#contribucion)
 
 <a name="instalacion"></a>
-## Instalación
+## Installation
 > Using [Python Package Index (PyPI)](https://pypi.org/project/algepy/)
 ```bash
 pip install algepy
