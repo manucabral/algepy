@@ -1,6 +1,8 @@
 from matplotlib import pyplot as plt
+import numpy as np
 from .vector import Vector
 from .point import Point
+from .plane import Plane
 
 
 class Plot:
@@ -102,6 +104,33 @@ class Plot:
         if not point:
             raise ValueError('not point given')
         self.ax.scatter(point.x, point.y, point.z, color=color)
+
+    def add_plane(self, plane: Plane, color: str = 'black') -> None:
+        """
+            Add a plane to the plot.
+
+            Params:
+                plane (Plane): plane to add
+                color (str): color of the plane. Default is black
+
+            Returns:
+                None
+
+            Raises:
+                TypeError if plane is not a Plane
+                ValueError if dimension is not equal or not plane given
+        """
+        if not isinstance(plane, Plane):
+            raise TypeError('plane must be a Plane')
+        if not plane:
+            raise ValueError('not plane given')
+        # point = np.array([plane.point.x, plane.point.y, plane.point.z])
+        normal = np.array(
+            [plane.normal.get('x'), plane.normal.get('y'), plane.normal.get('z')])
+        d = plane.d
+        xx, yy = np.meshgrid(range(self.range[1]), range(self.range[1]))
+        z = (-normal[0] * xx - normal[1] * yy - d) * 1. / normal[2]
+        self.ax.plot_surface(xx, yy, z, color=color)
 
     def clear(self) -> None:
         """
