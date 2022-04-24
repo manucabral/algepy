@@ -3,32 +3,36 @@
   <summary>English readme version, click to spand.</summary>
 
 ## What is Algepy?
-Algepy is a Python Package that allows you to manipulate vectors, it can be useful to calculate or verify the results of your operations.
+Algepy is a Python Package that allows you to manipulate vectors, points and planes. It can be useful to calculate or verify the results of your operations.
 
 This project is still under development and is not fully developed, it may have some bugs or failures.
 
-- [Installation](#instalacion)
-- [Vector](#vector)
-  - [Basic operations](#vector-operaciones-basicas)
-  - [Opposite](#vector-opuesto)
-  - [Magnitude](#vector-norma)
-  - [Direction Cosine](#vector-directores)
-  - [Angle between two vectors](#vector-angulos)
-  - [Dot product](#vector-escalar)
-  - [Perpendicular](#vector-perpendicular)
-  - [Proyection](#vector-proyeccion)
-  - [Cross product](#vector-producto-vectorial)
-  - [Triple product](#vector-producto-mixto)
-- [Point](#punto)
-  - [Basic operations](#punto-operaciones-basicas)
-  - [Midpoint](#punto-medio)
-  - [Find the vector between two points](#punto-vector)
-- [Plot](#grafico)
-  - [Vector](#grafico-vectores)
-  - [Point](#grafico-puntos)
-- [Contributions](#contribucion)
+- [Installation](#i-en)
+- [Vector](#v-en)
+  - [Basic operations](#v-en-ob)
+  - [Opposite](#v-en-o)
+  - [Magnitude](#v-en-mag)
+  - [Direction Cosine](#v-en-dc)
+  - [Angle between two vectors](#v-en-ang)
+  - [Dot product](#v-en-dot)
+  - [Perpendicular](#v-en-per)
+  - [Proyection](#v-en-proy)
+  - [Cross product](#v-en-cross)
+  - [Triple product](#v-en-triple)
+- [Point](#p-en)
+  - [Basic operations](#p-en-ob)
+  - [Midpoint](#p-en-pm)
+  - [Find the vector between two points](#p-en-v)
+- [Plane](#pl-en)
+  - [General equation](#pl-en-eg)
+  - [Symmetric equation](#pl-en-es)
+- [Plot](#g-en)
+  - [Vector](#g-en-v)
+  - [Point](#g-en-p)
+  - [Plane](#g-en-pl)
+- [Contributions](#c-en)
 
-<a name="instalacion"></a>
+<a name="i-en"></a>
 ## Installation
 > Using [Python Package Index (PyPI)](https://pypi.org/project/algepy/)
 ```bash
@@ -40,7 +44,7 @@ git clone https://github.com/manucabral/algepy.git
 cd algepy
 ```
 
-<a name="vector"></a>
+<a name="v-en"></a>
 ## Vector
 To create a vector you simply need to instantiate the Vector class with its components (x, y, z)
 
@@ -51,7 +55,7 @@ v = Vector(x=1, y=1, z=1)
 u = Vector(x=1, y=1, z=1, dimension=2)
 ```
 
-<a name="vector-operaciones-basicas"></a>
+<a name="v-en-ob"></a>
 ### Basic operations
 To add and subtract you just have to use the + and - operator, both operations returns a vector.
 ```py
@@ -64,7 +68,7 @@ To add and subtract you just have to use the + and - operator, both operations r
 (1,0,-2)
 ```
 
-<a name="vector-opuesto"></a>
+<a name="v-en-o"></a>
 ### Opposite
 To get the opposite of a vector you have to use its `opposite` method, this method returns a new vector.
 ```py
@@ -74,7 +78,7 @@ To get the opposite of a vector you have to use its `opposite` method, this meth
 (-1,-2,-3)
 ```
 
-<a name="vector-norma"></a>
+<a name="v-en-mag"></a>
 ### Magnitude
 To get magnitude of the vector, you have to use `magnitude` method, this method returns a decimal number.
 ```py
@@ -84,7 +88,7 @@ To get magnitude of the vector, you have to use `magnitude` method, this method 
 3.7416573867739413
 ```
 
-<a name="vector-directores"></a>
+<a name="v-en-dc"></a>
 ### Direction Cosine
 To get the direction angles of a vector you have to use the `direction_cosine` method, this method requires that you specify the axis (x, z, y).
 
@@ -100,7 +104,7 @@ The method returns radians by default but you can change it to degrees using the
 135.0
 ```
 
-<a name="vector-angulos"></a>
+<a name="v-en-ang"></a>
 ### Angle between two vectors
 To get the angle between two vectors, use the commutative method `angle`.
 
@@ -115,7 +119,7 @@ The method returns radians by default but you can change it to degrees using the
 0.6361
 ```
 
-<a name="vector-escalar"></a>
+<a name="v-en-dot"></a>
 ### Dot product
 To get the dot product between two vectors, use the * operator (do not confuse this operator with the cross product), this operation returns a scalar number.
 ```py
@@ -126,7 +130,7 @@ To get the dot product between two vectors, use the * operator (do not confuse t
 10
 ```
 
-<a name="vector-perpendicular"></a>
+<a name="v-en-per"></a>
 ### Perpendicular
 To know if a vector is perpendicular to another you have to use the `perpendicular` method, this method returns a boolean value (True or False)
 ```py
@@ -136,7 +140,7 @@ To know if a vector is perpendicular to another you have to use the `perpendicul
 >>> u.perpendicular(v)
 False
 ```
-<a name="vector-proyeccion"></a>
+<a name="v-en-proy"></a>
 ### Proyection
 To get the projection of one vector in the direction of another you have to use the `projection` method, this method returns a list with two vectors.
 
@@ -157,7 +161,7 @@ The main vector is the vector to which we apply the `projection` method.
 (1.0,1.5,1.5) # v on u
 ```
 
-<a name="vector-producto-vectorial"></a>
+<a name="v-en-cross"></a>
 ### Cross product
 To get the cross product between two vectors, you must use the `cross` method, this returns the vector resulting from the cross product.
 
@@ -173,7 +177,7 @@ Bear in mind that the vector product is not commutative, since if we change the 
 True, True
 ```
 
-<a name="vector-producto-mixto"></a>
+<a name="v-en-triple"></a>
 ### Triple product
 To get the triple product you have to use the `triple` method, this returns a number and isn't commutative.
 
@@ -189,7 +193,7 @@ When using the method on `u`.triple(`v`, `w`) the cross product between `v` and 
 >>> u * v.cross(w) # equivalent
 ```
 
-<a name="punto"></a>
+<a name="p-en"></a>
 ## Point
 To create a point you simply need to instantiate the Point class with its (x,y,z) components.
 
@@ -199,11 +203,11 @@ from algepy import Point
 >>> R = Point(x=1, y=1, z=4)
 >>> S = Point(x=3, y=0, z=2)
 ```
-<a name="punto-operaciones-basicas"></a>
+<a name="p-en-ob"></a>
 ### Basic operations
 To add and subtract you just have to use the + and - operator, both operations return a point.
 
-<a name="punto-medio"></a>
+<a name="p-en-pm"></a>
 ### Midpoint
 To get the midpoint between two points, use the `midpoint` method, it returns a vector with the components of the midpoint.
 ```py
@@ -214,7 +218,7 @@ from algepy import Point
 (2.0,0.5,2.5)
 ```
 
-<a name="punto-vector"></a>
+<a name="p-en-v"></a>
 ### Find the vector between two points
 To get a vector from two points you have to use the `find_vector` method, this returns a vector formed from the two points.
 
@@ -226,7 +230,7 @@ from algepy import Point
 (2,-1,-2)
 ```
 
-<a name="grafico"></a>
+<a name="g-en"></a>
 ## Plot
 Algepy uses pyplot from matplotlib so for this module to work, you need to have this package installed.
 
@@ -236,7 +240,55 @@ plot = Plot(name='Example', projection='3d')
 plot.show()
 ```
 
-<a name="grafico-vectores"></a>
+<a name="pl-en"></a>
+## Plane
+To create a plane we need the normal vector (vector perpendicular to the plane) and some point that belongs to the plane.
+
+```py
+>>> from algepy import Vector, Point, Plane
+>>> n = Vector(x=2, y=-3, z=1)
+>>> p = Point(x=1, y=3, z=1)
+>>> plane = Plane(normal=n, point=p)
+>>> plane
+π: 2x -3y 1z 6 = 0
+```
+  
+If we do not pass the normal vector and the default point so these will be null vectors, we can also manually assign the components of the plane by accessing the properties a, b, c and d.
+  
+```py
+>>> from algepy import Vector, Point, Plane
+>>> plane = Plane()
+>>> plane
+π: 0x 0y 0z 0 = 0
+>>> plane.a = 5
+π: 5x 0y 0z 0 = 0
+```
+
+<a name="pl-en-eg"></a>
+## General equation
+To get the implicit or general equation of the plane, we simply access the plane object created previously.
+```py
+>>> plane
+π: 2x -3y 1z 6 = 0
+```
+
+<a name="pl-en-es"></a>
+## Symmetric equation
+To get the segmental equation of the plane we must use the `symmetric_equation` method, for this we need at least to have defined the components of the plane (a, b, c and d).
+
+We can indicate to the method if we want the result as a fraction or by decimals through the `fraction` parameter
+```py
+>>> from algepy import Vector, Point, Plane
+>>> n = Vector(x=2, y=-3, z=1)
+>>> plane = Plane(normal=n)
+>>> plane.d = 6
+>>> plane.symmetric_equation(fraction=True)
+2x/-6 -3y/-6 1z/-6 = 1
+>>> plane.symmetric_equation(decimals=3)
+x/0.333 y/-0.5 z/0.167 = 1
+```
+
+<a name="g-en-v"></a>
 ### Plot a vector
 To add a vector to our plot we need to use the `add_vector` method and also have an origin point for the vector.
 
@@ -252,7 +304,7 @@ Once this is done we can show the graph with the `show` method.
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplot.png?raw=true" title="testplot">
 
-<a name="grafico-puntos"></a>
+<a name="g-en-p"></a>
 ### Plot a point
 To add a point to our plot we need to use the `add_point` method.
 
@@ -267,7 +319,24 @@ Once this is done we can show the graph with the `show` method.
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplotpoint.png?raw=true" title="testplotpoint">
 
-<a name="contribucion"></a>
+<a name="g-en-pl"></a>
+## Plot a plane
+To add a plane to our plot we need to use the `add_plane` method.
+
+Once this is done we can show the graph with the `show` method.
+```py
+  from algepy import Vector, Point, Plane
+ 
+  n = Vector(x=2, y=-3, z=1)
+  p = Point(x=1, y=3, z=1)
+  plane = Plane(normal=n, point=p)
+  plot = Plot(projection='3d', range=[-5, 5])
+  plot.add_plane(plane=plane, color='red')
+  plot.show()
+```
+<img src="https://github.com/manucabral/algepy/blob/main/assets/plane.png?raw=true" title="testplotplane">
+
+<a name="c-en"></a>
 ## Contributions
 All contributions, reports or bug fixes and ideas are welcome. You can go to the issues section and provide your help.
 
@@ -281,28 +350,32 @@ Algepy es una libreria de python que te permite manipular vectores de hasta 3 di
 
 Este proyecto todavía se encuentra en desarrollo y no está completamente desarrollado, puede tener algunos bugs o fallos.
 
-- [Instalación](#instalacion)
-- [Vector](#vector)
-  - [Operaciones básicas](#vector-operaciones-basicas)
-  - [Opuesto](#vector-opuesto)
-  - [Módulo o norma](#vector-norma)
-  - [Ángulos directores](#vector-directores)
-  - [Ángulo entre dos vectores](#vector-angulos)
-  - [Producto escalar](#vector-escalar)
-  - [Perpendicularidad](#vector-perpendicular)
-  - [Proyección de vectores](#vector-proyeccion)
-  - [Producto vectorial](#vector-producto-vectorial)
-  - [Producto mixto](#vector-producto-mixto)
-- [Punto](#punto)
-  - [Operaciones básicas](#punto-operaciones-basicas)
-  - [Punto medio](#punto-medio)
-  - [Vector a partir de dos puntos](#punto-vector)
-- [Gráfico](#grafico)
-  - [Vector](#grafico-vectores)
-  - [Punto](#grafico-puntos)
-- [Contribuciones](#contribucion)
+- [Instalación](#i-es)
+- [Vector](#v-es)
+  - [Operaciones básicas](#v-es-ob)
+  - [Opuesto](#v-es-o)
+  - [Módulo o norma](#v-es-mag)
+  - [Ángulos directores](#v-es-dc)
+  - [Ángulo entre dos vectores](#v-es-ang)
+  - [Producto escalar](#v-es-dot)
+  - [Perpendicularidad](#v-es-per)
+  - [Proyección de vectores](#v-es-proy)
+  - [Producto vectorial](#v-es-cross)
+  - [Producto mixto](#v-es-triple)
+- [Punto](#p-es)
+  - [Operaciones básicas](#p-es-ob)
+  - [Punto medio](#p-es-pm)
+  - [Vector a partir de dos puntos](#p-es-v)
+- [Plano](#pl-es)
+  - [Ecuación general](#pl-es-eg)
+  - [Ecuación segmentaria](#pl-es-es)
+- [Gráfico](#g-es)
+  - [Vector](#g-es-v)
+  - [Punto](#g-es-p)
+  - [Plano](#g-es-pl)
+- [Contribuciones](#c-es)
 
-<a name="instalacion"></a>
+<a name="i-es"></a>
 ## Instalación
 > Utilizando [Python Package Index (PyPI)](https://pypi.org/project/algepy/)
 ```bash
@@ -314,7 +387,7 @@ git clone https://github.com/manucabral/algepy.git
 cd algepy
 ```
 
-<a name="vector"></a>
+<a name="v-es"></a>
 ## Vector
 Para definir un vector simplemente necesitas instanciar la clase Vector con sus componentes (x, y, z)
 
@@ -325,7 +398,7 @@ v = Vector(x=1, y=1, z=1)
 u = Vector(x=1, y=1, z=1, dimension=2) # ignorará el eje z
 ```
 
-<a name="vector-operaciones-basicas"></a>
+<a name="v-es-ob"></a>
 ### Operaciones básica
 Para sumar y restar solamente tienes que utilizar el operador + y -, las dos operaciones devuelve un vector.
 ```py
@@ -338,7 +411,7 @@ Para sumar y restar solamente tienes que utilizar el operador + y -, las dos ope
 (1,0,-2)
 ```
 
-<a name="vector-opuesto"></a>
+<a name="v-es-o"></a>
 ### Opuesto
 Para obtener el opuesto de un vector hay que utilizar su método `opposite`, este método devuelve un nuevo vector.
 ```py
@@ -348,7 +421,7 @@ Para obtener el opuesto de un vector hay que utilizar su método `opposite`, est
 (-1,-2,-3)
 ```
 
-<a name="vector-norma"></a>
+<a name="v-es-mag"></a>
 ### Módulo o norma
 Para obtener el módulo o la norma del vector hay que utilizar su método `magnitude`, este método devuelve un número decimal.
 ```py
@@ -358,7 +431,7 @@ Para obtener el módulo o la norma del vector hay que utilizar su método `magni
 3.7416573867739413
 ```
 
-<a name="vector-directores"></a>
+<a name="v-es-dc"></a>
 ### Ángulos directores
 Para obtener los ángulos directores de un vector hay que utilizar el método `direction_cosine`, este método requiere que le especifiques el eje obligatoriamente (x, z,  y).
 
@@ -374,7 +447,7 @@ El método devuelve por defecto en radianes pero lo puedes cambiar a grados medi
 135.0
 ```
 
-<a name="vector-angulos"></a>
+<a name="v-es-ang"></a>
 ### Ángulo entre dos vectores
 Para obtener el ángulo que se forma entre dos vectores hay que utilizar el método conmutativo `angle`.
 
@@ -389,7 +462,7 @@ El método devuelve por defecto en radianes pero lo puedes cambiar a grados medi
 0.6361
 ```
 
-<a name="vector-escalar"></a>
+<a name="v-es-dot"></a>
 ### Producto escalar
 Para obtener el producto escalar entre dos vectores hay que utilizar el operador * (no confundir este operador con el producto vectorial) esta operación devuelve un número escalar.
 ```py
@@ -400,7 +473,7 @@ Para obtener el producto escalar entre dos vectores hay que utilizar el operador
 10
 ```
 
-<a name="vector-perpendicular"></a>
+<a name="v-es-per"></a>
 ### Perpendicularidad
 Para saber si un vector es perpendicular a otro hay que utilizar el método `perpendicular`, este método devuelve un valor booleano (True o False)
 ```py
@@ -410,7 +483,7 @@ Para saber si un vector es perpendicular a otro hay que utilizar el método `per
 >>> u.perpendicular(v)
 False
 ```
-<a name="vector-proyeccion"></a>
+<a name="v-es-proy"></a>
 ### Proyección de vectores
 Para obtener la proyección de un vector en la dirección de otro hay que utilizar el método `projection`, este método devuelve una lista con dos vectores.
 
@@ -430,7 +503,7 @@ El vector principal es el vector al que le aplicamos el método `projection`.
 (1.0,1.5,1.5) # vector v proyectado en u
 ```
 
-<a name="vector-producto-vectorial"></a>
+<a name="v-es-cross"></a>
 ### Producto vectorial
 Para obtener el producto vectorial entre dos vectores hay que utilizar el método `cross`, este método devuelve el vector resultado del producto vectorial.
 
@@ -446,7 +519,7 @@ Tener en cuenta que el producto vectorial no es conmutativo, ya que si cambiamos
 True, True
 ```
 
-<a name="vector-producto-mixto"></a>
+<a name="v-es-triple"></a>
 ### Producto mixto
 Para obtener el producto mixto hay que utilizar el método `triple`, este método devuelve un escalar y no es conmutativo así que hay que tener en cuenta lo siguiente.
 
@@ -463,7 +536,7 @@ Cuando se utiliza el método en `u`.triple(`v`,`w`) se aplicará primero el prod
 >>> u * v.cross(w) # equivalente
 ```
 
-<a name="punto"></a>
+<a name="p-es"></a>
 ## Punto
 Para definir un punto simplemente necesitas instanciar la clase Point con sus componentes (x, y, z).
 
@@ -473,11 +546,11 @@ from algepy import Point
 >>> R = Point(x=1, y=1, z=4)
 >>> S = Point(x=3, y=0, z=2)
 ```
-<a name="punto-operaciones-basicas"></a>
+<a name="p-es-ob"></a>
 ### Operaciones básicas
 Para sumar y restar solamente tienes que utilizar el operador + y -, las dos operaciones devuelve un punto.
 
-<a name="punto-medio"></a>
+<a name="p-es-pm"></a>
 ### Punto medio
 Para obtener el punto medio entre dos puntos hay que utilizar el método `midpoint`, este devuelve un vector con los componentes del punto medio.
 ```py
@@ -488,27 +561,76 @@ from algepy import Point
 (2.0,0.5,2.5)
 ```
 
-<a name="punto-vector"></a>
+<a name="p-es-v"></a>
 ### Vector a partir de dos puntos
 Para obtener un vector a partir de dos puntos hay que utilizar el método `find_vector`, este devuelve un vector formado a partir de los dos puntos.
 
 ```py
-from algepy import Point
+>>> from algepy import Point
 >>> r = Point(x=1, y=1, z=4)
 >>> s = Point(x=3, y=0, z=2)
 >>> r.find_vector(s)
 (2,-1,-2)
 ```
-<a name="grafico"></a>
+  
+<a name="pl-es"></a>
+## Plano
+Para crear un plano necesitamos el vector normal (vector perpendicular al plano) y algún punto que pertenezca al plano.
+
+```py
+>>> from algepy import Vector, Point, Plane
+>>> n = Vector(x=2, y=-3, z=1)
+>>> p = Point(x=1, y=3, z=1)
+>>> plano = Plane(normal=n, point=p)
+>>> plano
+π: 2x -3y 1z 6 = 0
+```
+  
+Si no le pasamos el vector normal y el punto por defecto estos serán vectores nulos, también podemos asignarle manualmente los componentes del plano accediendo a las propiedades a, b, c y d.
+  
+```py
+>>> from algepy import Vector, Point, Plane
+>>> plano = Plane()
+>>> plano
+π: 0x 0y 0z 0 = 0
+>>> plano.a = 5
+π: 5x 0y 0z 0 = 0
+```
+
+<a name="pl-es-eg"></a>
+## Ecuación general
+Para obtener la ecucación implícita o general del plano simplemente accedemos al objeto plano creado anteriormente.
+```py
+>>> plano
+π: 2x -3y 1z 6 = 0
+```
+
+<a name="pl-es-es"></a>
+## Ecuación segmentaria
+Para obtener la ecucación segmentaria del plano hay que utilizar el método `symmetric_equation`, para esto necesitamos al menos tener definido los componentes del plano (a, b, c y d).
+
+Al método le podemos indicar si el resultado lo queremos como fracción o por decimales mediante el parámetro `fraction`
+```py
+>>> from algepy import Vector, Point, Plane
+>>> n = Vector(x=2, y=-3, z=1)
+>>> plano = Plane(normal=n)
+>>> plano.d = 6
+>>> plano.symmetric_equation(fraction=True)
+2x/-6 -3y/-6 1z/-6 = 1
+>>> plano.symmetric_equation(decimals=3)
+x/0.333 y/-0.5 z/0.167 = 1
+```
+ 
+<a name="g-es"></a>
 ## Gráfico
 Algepy utiliza pyplot de matplotlib así que para que este módulo te funcione necesitas tener instalado este paquete.
 
 Por ahora el gráfico solamente soporta 3 dimensiones, puedes intentar con otras pero corres el riesgo de obtener varios errores.
 ```py
-plot = Plot(name='Ejemplo', projection='3d')
-plot.show()
+grafico = Plot(name='Ejemplo', projection='3d')
+grafico.show()
 ```
-<a name="grafico-vectores"></a>
+<a name="g-es-v"></a>
 ### Gráfico de un vector
 Para agregar un vector a nuestro gráfico necesitamos utilizar el método `add_vector` y además tener un punto de origen para el vector.
 
@@ -519,13 +641,13 @@ from algepy import Vector, Point, Plot
   
   origen = Point(x=0, y=0, z=0)
   a = Vector(x=1, y=2, z=3)
-  plot = Plot(name='Vector', projection='3d')
-  plot.add_vector(origin=origen, vector=a)
-  plot.show()
+  grafico = Plot(name='Vector', projection='3d')
+  grafico.add_vector(origin=origen, vector=a)
+  grafico.show()
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplot.png?raw=true" title="testplot">
 
-<a name="grafico-puntos"></a>
+<a name="g-es-p"></a>
 ### Gráfico de un punto
 Para agregar un punto a nuestro gráfico necesitamos utilizar el método `add_point`
 
@@ -533,13 +655,30 @@ Una vez realizado esto podemos mostrar el gráfico con el método `show`
 ```py
   from algepy import Point, Plot
   p = Point(x=1, y=2, z=3)
-  plot = Plot(name='Punto', projection='3d')
-  plot.add_point(point=p, color='red')
-  plot.show()
+  grafico = Plot(name='Punto', projection='3d')
+  grafico.add_point(point=p, color='red')
+  grafico.show()
 ```
 <img src="https://github.com/manucabral/algepy/blob/main/assets/testplotpoint.png?raw=true" title="testplotpoint">
 
-<a name="contribucion"></a>
+<a name="g-es-pl"></a>
+## Gráfico de un plano
+Para agregar un plano a nuestro gráfico necesitamos utilizar el método `add_plane`
+
+Una vez realizado esto podemos mostrar el gráfico con el método `show`
+```py
+  from algepy import Vector, Point, Plane
+ 
+  n = Vector(x=2, y=-3, z=1)
+  p = Point(x=1, y=3, z=1)
+  plano = Plane(normal=n, point=p)
+  grafico = Plot(projection='3d', range=[-5, 5])
+  grafico.add_plane(plane=plano, color='red')
+  grafico.show()
+```
+<img src="https://github.com/manucabral/algepy/blob/main/assets/plane.png?raw=true" title="testplotplane">
+
+<a name="c-es"></a>
 ## Contribución
 Todas las contribuciones, reportes o arreglos de bugs e ideas es bienvenido. Para esto puedes dirigirte al apartado de issues y aportar tu ayuda.
 </details>
