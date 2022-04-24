@@ -74,6 +74,37 @@ class Plane:
             z_ = v
         return Point(x=x_, y=y_, z=z_)
 
+    def symmetric_equation(self, **kwargs) -> str:
+        """
+            Return the symmetric equation of the plane.
+
+            Params:
+                point (Point): point on the plane
+                decimals (int): number of decimals to round to
+                fraction (bool): whether to return a fraction or not
+
+            Returns:
+                A string representation of the symmetric equation.
+
+            Raises:
+                TypeError if point is not a Point
+                ValueError d must not be 0
+        """
+        point = kwargs.get('point', None)
+        decimals = kwargs.get('decimals', 2)
+        fraction = kwargs.get('fraction', False)
+        if point and not isinstance(point, Point):
+            raise TypeError('point must be a Point')
+        d = -(self.find_d(point) if point else self.d)
+        if d == 0:
+            raise ValueError('d must not be 0')
+        if fraction:
+            return f'{self.a}x/{d} {self.b}y/{d} {self.c}z/{d} = 1'
+        p = (self.a/-d).__round__(decimals)
+        q = (self.b/-d).__round__(decimals)
+        r = (self.c/-d).__round__(decimals)
+        return f'x/{p} y/{q} z/{r} = 1'
+
     def __str__(self):
         """
             Return a string representation of the plane.
@@ -87,4 +118,4 @@ class Plane:
             Raises:
                 None
         """
-        return f'π: {self.a}x {self.b}y {self.c}z {self.find_d(self.point)}= 0'
+        return f'π: {self.a}x {self.b}y {self.c}z {self.d} = 0'
