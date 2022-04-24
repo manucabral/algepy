@@ -229,17 +229,6 @@ from algepy import Point
 >>> r.find_vector(s)
 (2,-1,-2)
 ```
-
-<a name="g-en"></a>
-## Plot
-Algepy uses pyplot from matplotlib so for this module to work, you need to have this package installed.
-
-For now the plot only supports 3 dimensions, you can try others dimensions but you will have errors.
-```py
-plot = Plot(name='Example', projection='3d')
-plot.show()
-```
-
 <a name="pl-en"></a>
 ## Plane
 To create a plane we need the normal vector (vector perpendicular to the plane) and some point that belongs to the plane.
@@ -286,6 +275,16 @@ We can indicate to the method if we want the result as a fraction or by decimals
 2x/-6 -3y/-6 1z/-6 = 1
 >>> plane.symmetric_equation(decimals=3)
 x/0.333 y/-0.5 z/0.167 = 1
+```
+
+<a name="g-en"></a>
+## Plot
+Algepy uses pyplot from matplotlib so for this module to work, you need to have this package installed.
+
+For now the plot only supports 3 dimensions, you can try others dimensions but you will have errors.
+```py
+plot = Plot(name='Example', projection='3d')
+plot.show()
 ```
 
 <a name="g-en-v"></a>
