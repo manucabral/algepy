@@ -3,7 +3,7 @@ import math
 
 class Vector:
     """
-        Vector class
+        Vector definition
         Supported operators:
             +: add two vectors
             -: subtract two vectors

@@ -1,13 +1,15 @@
 from matplotlib import pyplot as plt
-import numpy as np
+from numpy import array, meshgrid
+
 from .vector import Vector
 from .point import Point
 from .plane import Plane
+from .line import Line
 
 
 class Plot:
     """
-        Plot class, uses matplotlib.
+        Plot definition, uses matplotlib.
         Only supports 3d projection for now.
     """
 
@@ -125,12 +127,43 @@ class Plot:
         if not plane:
             raise ValueError('not plane given')
         # point = np.array([plane.point.x, plane.point.y, plane.point.z])
-        normal = np.array(
+        normal = array(
             [plane.normal.get('x'), plane.normal.get('y'), plane.normal.get('z')])
         d = plane.d
-        xx, yy = np.meshgrid(range(self.range[1]), range(self.range[1]))
+        xx, yy = meshgrid(range(self.range[1]), range(self.range[1]))
         z = (-normal[0] * xx - normal[1] * yy - d) * 1. / normal[2]
         self.ax.plot_surface(xx, yy, z, color=color)
+
+    def add_line(self, **kwargs) -> None:
+        """
+            Add a line to the plot.
+
+            Params:
+                line (Line): line to add
+                color (str): color of the line. Default is black
+
+            Returns:
+                None
+
+            Raises:
+                ValueError if no line given
+                TypeError if line must be a Line
+                TypeError if origin must be a Point
+        """
+        line = kwargs.get('line', None)
+        origin = kwargs.get('origin', Point(x=0, y=0, z=0))
+        color = kwargs.get('color', 'black')
+        if not line:
+            raise ValueError('No line given')
+        if not isinstance(line, Line):
+            raise TypeError('line must be a Line')
+        if origin and not isinstance(origin, Point):
+            raise TypeError('origin must be a Point')
+        x = [origin.x, line.vector.get('x')]
+        y = [origin.y, line.vector.get('y')]
+        z = [origin.z, line.vector.get('z')]
+        #self.ax.plot(line.points, color=color)
+        self.ax.plot(x, y, z, color=color)
 
     def clear(self) -> None:
         """

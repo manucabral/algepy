@@ -4,7 +4,7 @@ from .point import Point
 
 class Plane:
     """
-        Plane class
+        Plane definition
     """
 
     def __init__(self, **kwargs):

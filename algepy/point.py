@@ -3,7 +3,7 @@ from .vector import Vector
 
 class Point:
     """
-        Point class
+        Point definition
         Supported operators:
             +: add two points
             ==: check if two points are equal
